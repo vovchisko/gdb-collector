@@ -1,7 +1,7 @@
 {
     "name": "gdb-collector",
-    "version": "1.0.0",
-    "description": "Grab data from various sources and store into a database",
+    "version": "1.0.1",
+    "description": "Collects information about games from different sources and save it all into DB",
     "main": "collector.js",
     "scripts": {
         "collector": "node collector.js"

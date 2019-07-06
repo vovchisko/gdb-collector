@@ -1,0 +1,26 @@
+{
+    "name": "gdb-collector",
+    "version": "1.0.0",
+    "description": "Grab data from various sources and store into a database",
+    "main": "collector.js",
+    "scripts": {
+        "collector": "node collector.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/vovchisko/gdb-collector.git"
+    },
+    "author": "@vovchisko",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/vovchisko/gdb-collector/issues"
+    },
+    "homepage": "https://github.com/vovchisko/gdb-collector#readme",
+    "dependencies": {
+        "axios": "^0.19.0",
+        "crypto": "^1.0.1",
+        "deep-extend": "^0.6.0",
+        "mongodb": "^3.2.7",
+        "shortid": "^2.2.14"
+    }
+}

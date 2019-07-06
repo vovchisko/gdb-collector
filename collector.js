@@ -9,6 +9,7 @@ async function init() {
     const games = await Steam.loadList();
 
     for (let i = 0; i < games.length; i++) {
+        process.stdout.write((i+1) + ' of ' + games.length + ' ');
         let game = await Steam.generateGame(games[i], DB.games)
     }
 

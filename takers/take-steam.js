@@ -37,6 +37,13 @@ class SteamCollector extends Take {
         this.name = "steam";
         this.offset = 0;
         this.basicList = [];
+
+        this._memory = {
+            genres: {},
+            publishers: {},
+            developers: {},
+            features: {}
+        }
     }
 
     /**
@@ -186,11 +193,13 @@ class SteamCollector extends Take {
      * @return {Promise<T>}
      */
     async getPublisher(name) {
+        if (this._memory.publishers[name]) return this._memory.publishers[name];
         let publisher = await DB.publishers.findOne({name});
         if (!publisher) {
             publisher = {_id: DB.id(), name: name};
             await DB.publishers.insertOne(publisher)
         }
+        this._memory.developers[name] = publisher
         return publisher
     }
 
@@ -200,11 +209,13 @@ class SteamCollector extends Take {
      * @return {Promise<T>}
      */
     async getDeveloper(name) {
+        if (this._memory.developers[name]) return this._memory.developers[name];
         let dev = await DB.developers.findOne({name});
         if (!dev) {
             dev = {_id: DB.id(), name: name};
             await DB.developers.insertOne(dev)
         }
+        this._memory.developers[name] = dev
         return dev
     }
 
@@ -215,13 +226,15 @@ class SteamCollector extends Take {
      * @return {Promise<T>}
      */
     async getFeature(steamCategory) {
-        let category = await DB.features.findOne({steam_id: steamCategory.id});
+        if (this._memory.features[steamCategory.id]) return this._memory.features[steamCategory.id];
+        let feature = await DB.features.findOne({steam_id: steamCategory.id});
         // todo: later we also need to find existing feature by name, maybe from another platform. and mark it
-        if (!category) {
-            category = {_id: DB.id(), name: steamCategory.description, steam_id: steamCategory.id};
-            await DB.features.insertOne(category)
+        if (!feature) {
+            feature = {_id: DB.id(), name: steamCategory.description, steam_id: steamCategory.id};
+            await DB.features.insertOne(feature)
         }
-        return category
+        this._memory.features[steamCategory.id] = feature;
+        return feature
     }
 
     /**
@@ -230,12 +243,14 @@ class SteamCollector extends Take {
      * @return {Promise<T>}
      */
     async getGenre(steamGenre) {
-        let genre = await DB.genres.findOne({name: steamGenre.id});
+        if (this._memory.genres[steamGenre.id]) return this._memory.genres[steamGenre.id];
+        let genre = await DB.genres.findOne({steam_id: steamGenre.id});
         // todo: later we also need to find existing genres by name as well
         if (!genre) {
             genre = {_id: DB.id(), name: steamGenre.description, steam_id: steamGenre.id};
             await DB.genres.insertOne(genre)
         }
+        this._memory.genres[steamGenre.id] = genre;
         return genre
     }
 

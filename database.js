@@ -26,6 +26,10 @@ class Database {
             .then(async (client) => {
                 this._db = client.db(this.cfg.dbname);
                 this.games = this._db.collection('games');
+                this.publishers = this._db.collection('publishers');
+                this.developers = this._db.collection('developers');
+                this.genres = this._db.collection('genres');
+                this.features = this._db.collection('features');
 
                 callback();
             })

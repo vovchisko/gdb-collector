@@ -128,7 +128,9 @@ class SteamCollector extends Take {
 
         await tools.pickx(steam_game, local_record,
             ['name', 'name'],
-            ['type', 'name', tools.convert.LOW_CASE],
+            ['type', 'type', tools.convert.LOW_CASE],
+            ['short_description', 'info'],
+            ['detailed_description', 'description'],
             ['is_free', 'is_free'],
             ['required_age', 'required_age'],
             ['platforms', 'platforms'],

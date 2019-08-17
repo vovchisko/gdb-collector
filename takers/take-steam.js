@@ -132,11 +132,16 @@ class SteamCollector extends Take {
             ['is_free', 'is_free'],
             ['required_age', 'required_age'],
             ['platforms', 'platforms'],
-            ['release_date', 'release'],
+            ['release_date', 'year', (release) => {
+                if(release.coming_soon) return null
+                return (new Date(release.date).getFullYear())
+             }],
+            ['genres', 'genresName'],
             ['detailed_description', 'description'],
             ['short_description', 'info'], 
             ['screenshots', 'screenshots', screenshots => screenshots.map(s => { return {thumb: s.path_thumbnail, full: s.path_full} })],
             ['movies', 'videos', movies => movies.map(m => {return {name: m.name, thumb: m.thumbnail, src: m.webm}})],
+            ['publishers', 'publisherName'],
             ['publishers', 'publishers', async (pubs) => {
                 let ids = [];
                 for (let i in pubs) {
@@ -184,7 +189,7 @@ class SteamCollector extends Take {
                 }
                 return genres
 
-            }]
+            }],
         );
 
     }

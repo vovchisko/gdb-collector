@@ -12,8 +12,8 @@ class Database {
 
         //database settings
         this.cfg = {
-            host: '167.71.44.65',
-            port: 22,
+            host: '127.0.0.1',
+            port: 57908,
             dbname: 'gameDatabase',
         };
     }

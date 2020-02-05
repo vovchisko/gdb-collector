@@ -153,8 +153,9 @@ class SteamCollector extends Take {
                 return ids
 
             }],
+            ['website', 'website'],
             ['fullgame', 'fullgame'],
-            ['header_image', 'header_image']
+            ['header_image','header_image'],
             ['developers', 'developers', async (devs) => {
                 let ids = [];
                 for (let i in devs) {
@@ -166,7 +167,6 @@ class SteamCollector extends Take {
                 return ids
 
             }],
-            ['webiste','website']
             ['categories', 'features', async (features) => {
                 // categories are very redicilous on steam
                 // and can't be used as categories at all.
@@ -191,7 +191,6 @@ class SteamCollector extends Take {
                     }
                 }
                 return genres
-
             }],
         );
 

@@ -46,7 +46,7 @@ async function pick(A, a, B, b, func = null, even_undef = false) {
 async function  pickx(A, B) {
     let fields = [...arguments].slice(2);
     for (let i in fields) {
-        await pick(A, fields[i][0], B, fields[i][1], fields[i][2], fields[i][3]);
+        await pick(A, fields[i][1], B, fields[i][1], fields[i][2], fields[i][3]);
     }
     return B;
 }

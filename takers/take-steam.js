@@ -166,7 +166,7 @@ class SteamCollector extends Take {
                 return ids
 
             }],
-            [websiter]
+            ['webiste','website']
             ['categories', 'features', async (features) => {
                 // categories are very redicilous on steam
                 // and can't be used as categories at all.

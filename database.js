@@ -35,7 +35,6 @@ class Database {
             })
             .catch((err) => {
                 console.error('DB::connect() Failed!', err);
-                process.exit(-1);
             });
         return this;
     }
